@@ -5,7 +5,7 @@ In the Package folder you can find a collected package which includes YARA execu
 
 ## Scanning for Log4Shell
 
-Log4Shell is a serious remote code execution (RCE) vulnerability in Log4j logging library, which is widely used in Java applications. Because it's often difficult to check whether the specific app is using vulnerable version of this library, we provide this YARA rule to help you with that task. Using it, you can scan the running processes on your systems to check for presense of the Log4j.
+Log4Shell is a serious remote code execution (RCE) vulnerability in Log4j logging library, which is widely used in Java applications. Because it's often difficult to check whether the specific app is using potentially vulnerable version of this library, we provide this YARA rule to help you with that task. Using it, you can scan the running processes on your systems to check for presense of the Log4j.
 
 ## Usage instructions
 
@@ -34,7 +34,7 @@ ps -eo pid,comm | grep -i java | grep -Eo '[0-9].*' | cut -d ' ' -f 1 | xargs -I
 
 ## Mitigations
 
-For Log4j version 2.10 or greater, this vulnerability can be mitigated by setting Log4j2.formatMsgNoLookups system property, or by setting environment variable ``LOG4J_FORMAT_MSG_NO_LOOKUPS`` to true.
+For Log4j version 2.10 or greater, this vulnerability can be mitigated by setting Log4j2.formatMsgNoLookups system property, or by setting environment variable ``LOG4J_FORMAT_MSG_NO_LOOKUPS`` to true (application restart is required).
 
 Versions 2.0-beta9 to 2.10.0 can be mitigated by removing JndiLookup class from the classpath: ``zip -q -d Log4j-core-*.jar org/apache/logging/Log4j/core/lookup/JndiLookup.class``
 
