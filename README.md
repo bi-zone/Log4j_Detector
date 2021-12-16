@@ -22,14 +22,14 @@ You can use the folowing commands to scan Windows hosts:
 
 ```
 tasklist /FO CSV > scan_processes.txt
-FOR /F "tokens=2 delims=," %%F in ('tasklist /NH /FO CSV ^| findstr /I java') DO yara64.exe Log4j.yar %%~F >> scan_results.txt
+FOR /F "tokens=2 delims=," %%F in ('tasklist /NH /FO CSV ^| findstr /I java') DO yara64.exe log4j.yar %%~F >> scan_results.txt
 ```
 
 ### Linux
 First, make sure that YARA package is installed on the system. Than you can use folowing command to scan Linux hosts:
 
 ```
-ps -eo pid,comm | grep -i java | grep -Eo '[0-9].*' | cut -d ' ' -f 1 | xargs -I '{}' yara Log4j.yar '{}' > scan_results.txt
+ps -eo pid,comm | grep -i java | grep -Eo '[0-9].*' | cut -d ' ' -f 1 | xargs -I '{}' yara log4j.yar '{}' > scan_results.txt
 ```
 
 ## Mitigations
